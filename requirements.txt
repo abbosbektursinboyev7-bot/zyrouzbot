@@ -1,3 +1,0 @@
-pyTelegramBotAPI
-firebase-admin
-Flask
