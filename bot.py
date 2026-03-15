@@ -2,6 +2,8 @@ import telebot
 from telebot import types
 import firebase_admin
 from firebase_admin import credentials, db
+from flask import Flask
+from threading import Thread
 
 # ------------------- CONFIG -------------------
 TOKEN = "8727652023:AAG6teald5OIAzgGgnm5idD6eNjM0A66owU"
@@ -20,6 +22,20 @@ firebase_admin.initialize_app(cred, {
 movies_ref = db.reference("movies")
 users_ref = db.reference("users")
 channels_ref = db.reference("mandatory_channels")
+# ---------------------------------------------
+
+# ---------- FLASK KEEP-ALIVE -----------------
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot ishlamoqda!"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+t = Thread(target=run)
+t.start()
 # ---------------------------------------------
 
 # ---------- HELP FUNCTION -------------------
@@ -134,11 +150,10 @@ def text_handler(message):
 
     # Janr bo‘yicha kinolar
     movies = movies_ref.get()
-    filtered = [m['name'] for m in movies.values()] if movies else []
     genre_filtered = []
     if movies:
         for m in movies.values():
-            if m['genre'].lower() == text.lower():
+            if m.get('genre', '').lower() == text.lower():
                 genre_filtered.append(m['name'])
     if genre_filtered:
         msg = f"🎬 {text} janridagi kinolar:\n"
@@ -152,7 +167,7 @@ def text_handler(message):
     found = None
     if movies:
         for m in movies.values():
-            if m['code'] == text:
+            if m.get('code') == text:
                 found = m
                 break
     if found:
