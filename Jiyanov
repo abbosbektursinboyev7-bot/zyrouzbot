@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiyanov Mirjalol</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0b0f19;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            padding: 60px 80px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            text-align: center;
+        }
+
+        .small-text {
+            color: #8d96a8;
+            font-size: 14px;
+            letter-spacing: 5px;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .name {
+            font-size: 65px;
+            font-weight: 800;
+            letter-spacing: 6px;
+            color: white;
+            text-transform: uppercase;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #7dd3fc,
+                #a78bfa,
+                #ffffff
+            );
+
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation: gradient 5s infinite linear;
+        }
+
+        .line {
+            width: 120px;
+            height: 3px;
+            margin: 25px auto 0;
+            border-radius: 10px;
+            background: linear-gradient(
+                90deg,
+                #7dd3fc,
+                #a78bfa
+            );
+            box-shadow: 0 0 20px #7dd3fc;
+        }
+
+        .circle {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #7c3aed;
+            filter: blur(100px);
+            opacity: 0.25;
+            z-index: -1;
+        }
+
+        .circle.one {
+            top: -100px;
+            left: -100px;
+        }
+
+        .circle.two {
+            bottom: -100px;
+            right: -100px;
+            background: #06b6d4;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 300%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 45px 25px;
+                width: 90%;
+            }
+
+            .name {
+                font-size: 35px;
+                letter-spacing: 3px;
+            }
+
+            .small-text {
+                font-size: 11px;
+                letter-spacing: 3px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+
+    <div class="container">
+        <div class="small-text">Welcome</div>
+
+        <div class="name">
+            Jiyanov Mirjalol
+        </div>
+
+        <div class="line"></div>
+    </div>
+
+</body>
+</html>
